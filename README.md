@@ -1,4 +1,4 @@
-# vue3_rilicompoments_swiper
+# vue_swiper_component
 
 ## Project setup
 ```
