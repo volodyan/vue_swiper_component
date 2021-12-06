@@ -80,7 +80,7 @@ export default {
   border-bottom: none;
   border-top: none;
   box-sizing: border-box;
-
+background: #F3F4F4;
   /deep/ .My-collapse-item {
     .el-collapse-item__header {
       display: flex;

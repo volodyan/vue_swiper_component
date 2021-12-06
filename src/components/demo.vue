@@ -23,9 +23,50 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.SelectDayCardDatamouted();
+      this.ControlPressureList()
+      this.ControlPressureCurve()
     });
   },
   methods: {
+    ControlPressureList() {
+      this.$axios
+        .post(
+          UrlClass.axiosUrlRC + "ControlPressureList",
+          JSON.stringify({
+            PlanType: 1,
+          }),
+          {
+            headers: { "Content-Type": "application/json;" },
+          }
+        )
+        .then((res) => {
+          console.log("ControlPressureList",res)
+         // Bus.$emit("ControlPressureListTo", res.data.Result.CtrlPressure);
+        })
+        .catch((error) => {
+          /*  console.log(error); */
+        });
+    },
+     ControlPressureCurve() {
+      this.$axios
+        .post(
+          UrlClass.axiosUrlRC + "ControlPressureCurve",
+          JSON.stringify({
+            PlanType: 1,
+          }),
+          {
+            headers: { "Content-Type": "application/json;" },
+          }
+        )
+        .then((res) => {
+          console.log("ControlPressureCurve",res)
+          Bus.$emit("ControlPressureCurveTo", res.data.Result);
+         
+        })
+        .catch((error) => {
+          /*  console.log(error); */
+        });
+    },
     SelectDayCardDatamouted() {
       var SelectDayCardData = {};
       SelectDayCardData.Customer = "shaoxing";
@@ -57,7 +98,7 @@ export default {
     width: 100%;
     height: 172px;
     cursor: pointer;
-      background: #b1babd;
+    background: #b1babd;
   }
   .CollapseOutbox {
     width: 100%;

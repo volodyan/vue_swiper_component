@@ -10,8 +10,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Axios from 'axios'
 // 引入mockjs
-//require('./mockserver.js')
-import './mock/mockserver.js'
+import './mockserver/mockserver'
 import moment from 'moment'
 Vue.prototype.$moment = moment;
 

@@ -1,4 +1,4 @@
 export default {
-    axiosUrlRC: "Mock/",
+    axiosUrlRC: "/api/",
 
 };

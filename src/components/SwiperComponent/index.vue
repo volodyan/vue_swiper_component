@@ -8,18 +8,30 @@
         :key="index"
       >
         <div class="lunbooutbox" @click="swiperitemtSelect(slide, index)">
-            <component :is='"SwiperComponentShowContent"' :slideData="slide" :slideIndex="index"></component>
+          <component
+            :is="'SwiperComponentShowContent'"
+            :slideData="slide"
+            :slideIndex="index"
+          ></component>
         </div>
       </swiper-slide>
     </swiper>
-    <div class="swiper-button-prev"   slot="button-prev">
+    <div
+      class="swiper-button-prev"
+      slot="button-prev"
+      @click="SwiperButtonPrevFun"
+    >
       <span
         class="iconfont icon-xiangzuo2 iconfont_left"
         @mouseenter="on_prev_enter"
         @mouseleave="on_prev_leave"
       ></span>
     </div>
-    <div class="swiper-button-next" slot="button-next">
+    <div
+      class="swiper-button-next"
+      slot="button-next"
+      @click="SwiperButtonNextFun"
+    >
       <span
         class="iconfont icon-xiangzuo2 iconfont_right"
         @mouseenter="on_top_enter"
@@ -31,11 +43,11 @@
 
 <script>
 import Bus from "@/bus.js";
-import SwiperComponentShowContent from './SwiperComponentShowContent/index.vue'
+import SwiperComponentShowContent from "./SwiperComponentShowContent/index.vue";
 export default {
   name: "SwiperComponent",
-  components:{
-      SwiperComponentShowContent
+  components: {
+    SwiperComponentShowContent,
   },
   data() {
     return {
@@ -108,26 +120,28 @@ export default {
       }
     },
   },
-//   created() {
-//     var ClienWidth = document.documentElement.clientWidth;
-//     if (ClienWidth == 1366) {
-//       this.swiperOption.slidesPerView = 19;
-//     }
-//     if (ClienWidth == 1440) {
-//       this.swiperOption.slidesPerView = 20;
-//     }
-//     if (ClienWidth == 1680) {
-//       this.swiperOption.slidesPerView = 23;
-//     }
-//     console.log(ClienWidth);
-//   },
+  //   created() {
+  //     var ClienWidth = document.documentElement.clientWidth;
+  //     if (ClienWidth == 1366) {
+  //       this.swiperOption.slidesPerView = 19;
+  //     }
+  //     if (ClienWidth == 1440) {
+  //       this.swiperOption.slidesPerView = 20;
+  //     }
+  //     if (ClienWidth == 1680) {
+  //       this.swiperOption.slidesPerView = 23;
+  //     }
+  //     console.log(ClienWidth);
+  //   },
   mounted() {
     Bus.$on("SelectDayCardDatares", (e) => {
       this.RData = e.data.RData;
     });
   },
   methods: {
-    swiperitemtSelect(slide, index) {},
+    swiperitemtSelect(slide, index) {
+      //this.mySwiper.slideTo(index, 20000, false);
+    },
     //通过获得的swiper对象来暂停自动播放
     on_top_enter() {
       /*     this.mySwiper.autoplay.start(); */
@@ -136,16 +150,19 @@ export default {
     },
     on_top_leave() {
       this.mySwiper.autoplay.stop();
-   
     },
     on_prev_enter() {
       this.mySwiper.slideTo(0, 20000, false);
     },
     on_prev_leave() {
       this.mySwiper.autoplay.stop();
-      
     },
-  
+    SwiperButtonPrevFun() {
+      this.mySwiper.slideTo(this.mySwiper.activeIndex, 20000, false);
+    },
+    SwiperButtonNextFun() {
+      this.mySwiper.slideTo(this.mySwiper.activeIndex, 20000, false);
+    },
   },
   //计算属性，获得可以操作的swiper对象
   computed: {
@@ -181,7 +198,7 @@ export default {
         }
         .lunbooutbox {
           width: 240px !important;
-         
+
           background-color: #f4f4f4;
           pointer-events: all;
         }

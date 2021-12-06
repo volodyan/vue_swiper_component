@@ -2,7 +2,7 @@
 <template>
   <div class="CollapseCompomemtSwiper">
     <!-- swiper -->
-    <swiper :options="swiperOption" class="CollapseCompomemtswiperswiper-containerr swiper-container">
+    <swiper :options="swiperOption"  class="CollapseCompomemtswiperswiper-containerr swiper-container2">
       <swiper-slide
         class="ChildSwiper-item"
         v-for="(slide, index) in CollapseChildRData"
@@ -12,14 +12,14 @@
       </swiper-slide>
     </swiper>
     <div
-      class="swiper-button-prev"
+      class="CollapseCompomemtswiper-button-prev"
       :class="'CollapseCompomemtSwiper-childslide-prev' + CollapseslideIndex"
       slot="button-prev1"
     >
       <span class="iconfont icon-xiangzuo2 iconfont_left"></span>
     </div>
     <div
-      class="swiper-button-next"
+      class="CollapseCompomemtswiper-button-next"
       :class="'CollapseCompomemtSwiper-childslide-next' + CollapseslideIndex"
       slot="button-next1"
     >
@@ -30,6 +30,7 @@
 
 <script>
 import Bus from "@/bus.js";
+
 export default {
   name: "CollapseCompomemtSwiper",
   props: ["CollapseChildRData", "CollapseslideIndex"],
@@ -174,12 +175,12 @@ export default {
     }
   }
 
-  .swiper-button-prev {
+  .CollapseCompomemtswiper-button-prev {
     display: none;
     opacity: 1;
     background-image: none !important;
     position: absolute !important;
-    top: 20px !important;
+    top:-2px !important;
     left: 0px !important;
     z-index: 5 !important;
     background: #d3dcde !important;
@@ -196,12 +197,12 @@ export default {
     }
   }
 
-  .swiper-button-next {
+  .CollapseCompomemtswiper-button-next {
     display: none;
     opacity: 1;
     background-image: none !important;
     position: absolute !important;
-    top: 20px !important;
+    top: -2px !important;
     right: 0px !important;
     z-index: 5 !important;
     background: #d3dcde !important;
@@ -218,10 +219,10 @@ export default {
       font-size: 16px;
     }
   }
-  &:hover .swiper-button-prev {
+  &:hover .CollapseCompomemtswiper-button-prev {
     display: block;
   }
-  &:hover .swiper-button-next {
+  &:hover .CollapseCompomemtswiper-button-next {
     display: block;
   }
 }
