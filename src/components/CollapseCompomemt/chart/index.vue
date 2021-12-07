@@ -20,59 +20,83 @@ export default {
   },
 
   mounted() {
-    Bus.$on("ControlPressureCurveTo", (e) => {
-      if (
-        !!e.Down.length ||
-        !!e.Up.length ||
-        !!e.Forecast.length ||
-        !!e.Real.length
-      ) {
-        //!!e.Waterworks.length
-        let Down = [];
-        let Up = [];
-        let Forecast = [];
-        let Real = [];
-        let Time = [];
-        let Max = e.Max;
-        let Min = e.Min;
-        let Now = e.Now;
-        let WarningTime = e.WarningTime;
+    // Bus.$on("ControlPressureCurveTo", (e) => {
+    //   if (
+    //     !!e.Down.length ||
+    //     !!e.Up.length ||
+    //     !!e.Forecast.length ||
+    //     !!e.Real.length
+    //   ) {
+    //     console.log("ControlPressureCurveTo",e)
+    //     //!!e.Waterworks.length
+    //     let Down = [];
+    //     let Up = [];
+    //     let Forecast = [];
+    //     let Real = [];
+    //     let Time = [];
+    //     let Max = e.Max;
+    //     let Min = e.Min;
+    //     let Now = e.Now;
+    //     let WarningTime = e.WarningTime;
 
-        e.Forecast.Data.forEach((ele) => {
-          Forecast.push(ele.Data);
-          Time.push(ele.Time);
-        });
-        e.Real.Data.forEach((ele) => {
-          Real.push(ele.Data);
-        });
-       e.Down.Data.forEach((ele) => {
-          Down.push(ele.Data);
-        });
-          e.Up.Data.forEach((ele) => {
-          Up.push(ele.Data);
-        });
-        var a = {
-          Forecast,
-          Real,
-          Down,
-          Up,
-          Time,
-          Max,
-          Min,
-          Now,
-          WarningTime,
-       
-        };
-        this.chartData = a;
-        this.$nextTick(() => {
-          this.initChart();
-        });
-      } else {
-        this.chart = this.$echarts.init(this.$el, "macarons");
-        this.chart.clear();
-      }
+    //     e.Forecast.Data.forEach((ele) => {
+    //       Forecast.push(ele.Data);
+    //       Time.push(ele.Time);
+    //     });
+    //     e.Real.Data.forEach((ele) => {
+    //       Real.push(ele.Data);
+    //     });
+    //    e.Down.Data.forEach((ele) => {
+    //       Down.push(ele.Data);
+    //     });
+    //       e.Up.Data.forEach((ele) => {
+    //       Up.push(ele.Data);
+    //     });
+    //     var a = {
+    //       Forecast,
+    //       Real,
+    //       Down,
+    //       Up,
+    //       Time,
+    //       Max,
+    //       Min,
+    //       Now,
+    //       WarningTime,
+
+    //     };
+    //     this.chartData = a;
+    //     this.$nextTick(() => {
+    //       this.initChart();
+    //     });
+    //   } else {
+    //     this.chart = this.$echarts.init(this.$el, "macarons");
+    //     this.chart.clear();
+    //   }
+    // });
+    /////
+    let Time=[0,1,2,3,4,5]
+    let Max=1600
+    let Min=0
+     let PresureMaxData=16.6
+    let PresureMinData=0
+    let DispatchList=[130,110,663,836,662,264]
+    let Forecast=[100,130,963,236,562,364]
+    let PressureList=[3,1.3,9.63,2.36,6.2,3.64]
+    var a = {
+      Forecast,
+      DispatchList,
+      PressureList,
+      Time,
+      Max,
+      Min,
+      PresureMaxData,
+      PresureMinData,
+    };
+    this.chartData = a;
+    this.$nextTick(() => {
+      this.initChart();
     });
-
+    /////
     this.resetSizefun();
     // this.MutationObserverStyleFun();
   },
@@ -250,8 +274,8 @@ export default {
             bounding: "all", // 决定此图形元素在定位时，对自身的包围盒计算方式
             style: {
               image: require("../../../assets/img/编组 24.png"), // 这里一定要注意、注意，必须是https开头的图片路径地址
-              width: 270,
-              height: 96,
+              width: 1092,
+              height: 78,
               lineWidth: 0,
             },
           },
@@ -405,7 +429,7 @@ export default {
 <style lang="scss" scoped>
 .chart {
   width: 100%;
-  height: 179px;
+  height: 148px;
 }
 </style>
 

@@ -18,6 +18,10 @@ Vue.use(ElementUI)
 Vue.use(VueAwesomeSwiper)
 Vue.prototype.$axios = Axios
 
+import * as echarts from 'echarts';
+
+Vue.prototype.$echarts = echarts;
+
 Vue.config.productionTip = false
 
 new Vue({

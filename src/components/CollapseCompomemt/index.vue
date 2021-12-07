@@ -40,7 +40,9 @@
                 </div>
               </div>
             </div>
-            <div class="PartOne_rightPart"></div>
+            <div class="PartOne_rightPart">
+              <component :is='"lineChart"' :key="lineChartKey"></component>
+            </div>
           </div>
           <div class="PartTwo">
             <component
@@ -56,19 +58,23 @@
 </template>
 <script>
 import CollapseCompomemtSwiper from "./CollapseCompomemtSwiper/index.vue";
+import lineChart from './chart/index.vue'
 export default {
   name: "CollapseCompomemt",
   components: {
     CollapseCompomemtSwiper,
+    lineChart
   },
   data() {
     return {
       activeNames: ["1"],
+      lineChartKey:0
     };
   },
   methods: {
     handleChange(val) {
       console.log(val);
+      this.lineChartKey++
     },
   },
 };
